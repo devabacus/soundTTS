@@ -66,25 +66,33 @@ def on_edit_action(browser):
     progress_dialog.show()  # Make dialog visible immediately
 
     output_folder = os.path.join(mw.pm.profileFolder(), "collection.media")
-    language = "en-US"
 
     for i, card_id in enumerate(selected_cards):
         card = mw.col.getCard(card_id)
         note = card.note()
+        
+        # For Front field
         front_text = note.fields[0]
+        if "]" not in front_text:
+            filename = download_sound(front_text, "en-US", output_folder)
+            if filename:
+                audio_tag = f"[sound:{filename}]"
+                note.fields[0] += audio_tag
 
-        filename = download_sound(front_text, language, output_folder)
+        # For Back field
+        back_text = note.fields[1]
+        if "]" not in back_text:
+            filename = download_sound(back_text, "si-LK", output_folder)
+            if filename:
+                audio_tag = f"[sound:{filename}]"
+                note.fields[1] += audio_tag
 
-        if filename:
-            audio_tag = f"[sound:{filename}]"
-            note.fields[0] += audio_tag
-            note.flush()
-
+        note.flush()
         progress_dialog.setValue(i+1)
         QCoreApplication.processEvents()  # Update the UI
 
 def setup_menu_item(browser):
-    action = QAction("Add TTS to Front", browser)
+    action = QAction("Add TTS to Front and Back", browser)
     action.triggered.connect(partial(on_edit_action, browser))
     browser.form.menuEdit.addAction(action)
 
