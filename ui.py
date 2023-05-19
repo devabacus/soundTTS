@@ -29,11 +29,7 @@ def setup_menu_item(browser):
     action.triggered.connect(partial(on_edit_action, browser))
     browser.form.menuEdit.addAction(action)
 
-addHook("browser.setupMenus", setup_menu_item)
-
 def on_browser_context_menu(browser, menu):
     action = QAction("Add TTS to Front and Back", browser)
     action.triggered.connect(partial(on_edit_action, browser))
     menu.addAction(action)
-
-addHook("browser.onContextMenu", on_browser_context_menu)
