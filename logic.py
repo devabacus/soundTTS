@@ -1,5 +1,5 @@
 from aqt import mw
-from .donwload_mp3 import download_sound
+from .download_mp3 import download_sound
 
 def process_card(card_id, output_folder):
     card = mw.col.getCard(card_id)
