@@ -11,7 +11,7 @@ def process_card(card_id, output_folder):
         language = "en-US"
         filename = download_sound(front_text, language, output_folder)
         if filename:
-            audio_tag = f"[sound:{filename}]"
+            audio_tag = f"\t\t\t\t\t\t\t\t[sound:{filename}]"   
             note.fields[0] += audio_tag
 
     # Process the Back field

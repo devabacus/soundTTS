@@ -56,7 +56,7 @@ def download_sound(text, language, output_folder):
 
 if __name__ == "__main__":
     # For testing purposes
-    text = "Hello world"
+    text = "Do you want to know the names of the dishes we make?"
     language = "en-US"
     output_folder = os.getcwd()  # current directory
 
