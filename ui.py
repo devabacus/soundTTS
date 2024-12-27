@@ -11,7 +11,8 @@ def on_edit_action(browser):
     selected_cards = browser.selectedCards()
     
     progress_dialog = QProgressDialog("Processing cards...", "", 0, len(selected_cards), browser)
-    progress_dialog.setWindowModality(Qt.WindowModal)
+    # progress_dialog.setWindowModality(Qt.WindowModal)
+    progress_dialog.setWindowModality(Qt.WindowModality.ApplicationModal)
     progress_dialog.setWindowTitle("Please Wait")
     progress_dialog.setCancelButton(None)  # Disallow canceling
     progress_dialog.setMinimumDuration(0)
